@@ -8,6 +8,18 @@ function App() {
     <BrowserRouter>
       <header>
         <Navbar />
+        <h1>ello</h1>
+        <h1>ello</h1>
+        <h1>ello</h1>
+        <h1>ello</h1>
+        <h1>ello</h1>
+        <h1>ello</h1>
+        <h1>ello</h1>
+        <h1>ello</h1>
+        <h1>ello</h1>
+        <h1>ello</h1>
+        <h1>ello</h1>
+        <h1>ello</h1>
       </header>
       <Switch>
         <Route exact path="/" component={HomeScreen}/>
