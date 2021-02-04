@@ -1,4 +1,4 @@
-.login_card{
+.singup_card{
     margin-top: 100px;
     text-align: center;
     max-width: 480px;
@@ -11,17 +11,17 @@
     border-radius: 25px;
 }
 
-.signin_heading{
+.signup_heading{
     text-align: center;
     font-size: 2.5rem;
 }
 
-.signin_details{
+.signup_details{
     text-align: center;
     font-size: 1.5rem;
 }
 
-.signin_button{
+.signup_button{
     background-color: #3f51b5;
     border-radius: 5px;
     color: white;
