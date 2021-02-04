@@ -10,7 +10,6 @@ const OraganizationSignIn = ()=>{
             <div className="org_login_card">
                 <h1 className="org_signin_heading">SIGN IN</h1>
                 <div className="org_signin_details">
-                <p>Enter your email id</p>
                 <TextField
                     id="outlined-primary"
                     placeholder="Enter your email"
@@ -18,8 +17,9 @@ const OraganizationSignIn = ()=>{
                     color="primary"
                     onChange={(e)=>{setEmail(e.target.value)}}
                 />
-                <p>Enter your password</p>
+                <br></br>
                 <TextField
+                style={{marginTop:"30px"}}
                     id="outlined-primary"
                     placeholder="Enter your password"
                     variant="outlined"

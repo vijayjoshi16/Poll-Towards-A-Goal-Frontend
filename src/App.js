@@ -6,6 +6,7 @@ import SignIn from './components/Screens/SignIn/SignIn';
 import SignUp from './components/Screens/SignUp/SignUp';
 import OrganizationSignIn from './components/Screens/OrganizationSignIn/OrganizationSignIn';
 import OrganizationSignUp from './components/Screens/OrganizationSignUp/OrganizationSignUp';
+import CreatePoll from './components/Screens/CreatePoll/CreatePoll';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/signup" component={SignUp} />
         <Route path="/organizationsignin" component={OrganizationSignIn} />
         <Route path="/organizationsignup" component={OrganizationSignUp} />
+        <Route path="/createpoll" component={CreatePoll} />
       </Switch>
     </BrowserRouter>
   );
