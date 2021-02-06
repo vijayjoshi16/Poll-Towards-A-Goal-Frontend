@@ -10,6 +10,7 @@ import CreatePoll from './components/Screens/CreatePoll/CreatePoll';
 import AllOrganizationPolls from './components/Screens/AllOrganizationPolls/AllOrganizationPolls';
 import AllPersonalPolls from './components/Screens/AllPersonalPolls/AllPersonalPolls';
 import SubscribedOrganizationPolls from './components/Screens/SubscribedOrganizationPolls/SubscribedOrganizationPolls';
+import OrganizationProfile from './components/Screens/OrganizationProfile/OrganizationProfile';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path="/allorganizationpolls" component={AllOrganizationPolls} />
         <Route path="/allpersonalpolls" component={AllPersonalPolls} />
         <Route path="/subscribedorganizationpolls" component={SubscribedOrganizationPolls} /> 
+        <Route path="/organizationprofile" component={OrganizationProfile} />
       </Switch>
     </BrowserRouter>
   );
