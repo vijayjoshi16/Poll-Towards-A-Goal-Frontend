@@ -5,6 +5,34 @@ import TextField from "@material-ui/core/TextField";
 const OraganizationSignIn = ()=>{
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+
+    const PostData = ()=>{
+        if(!email){
+            console.log("Please enter email");
+        }else if(!password){
+            console.log("Please enter password");
+        }else{
+            fetch("http://localhost:5000/organization/signin",
+            {
+                method: "post",
+                headers:{
+                    "Content-Type":"application/json",
+                },
+                body: JSON.stringify({
+                    email: email,
+                    password: password
+                }),
+            })
+            .then(res=>res.json())
+            .then(result=>{
+                console.log(result);
+                if(result.message==="Logged in successfully!"){
+                    localStorage.setItem("organization",result.token)
+                }
+            })
+        }
+    }
+
     return(
         <div>
             <div className="org_login_card">
@@ -27,7 +55,8 @@ const OraganizationSignIn = ()=>{
                     color="primary"
                     onChange={(e)=>{setPassword(e.target.value)}}
                 />
-                <div className="org_signin_button">
+                <div className="org_signin_button"
+                onClick={()=>{PostData()}}>
                     SIGN IN
                 </div>
                 </div>

@@ -3,11 +3,13 @@ import {useMediaQuery } from 'react-responsive';
 import PollOutlinedIcon from '@material-ui/icons/PollOutlined';
 import MenuIcon from '@material-ui/icons/Menu';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
+import {useHistory} from 'react-router-dom';
 
 export default function Navbar(){
   const isMobile = useMediaQuery({
     maxWidth:"767px"
   });
+  const history = useHistory();
   const [open, setOpen] = useState(false);
   return(
     <div>
@@ -53,6 +55,7 @@ export default function Navbar(){
             verticalAlign:"top",
             fontWeight:200,
             cursor:"pointer"}}
+            onClick={()=>{history.push("/signin")}}
             >Sign In</h2>
               <h2
               style={{
@@ -63,6 +66,7 @@ export default function Navbar(){
             verticalAlign:"top",
             fontWeight:200,
             cursor:"pointer"}}
+            onClick={()=>{history.push("/signup")}}
             >Register</h2>
               <h2
               style={{
@@ -140,6 +144,7 @@ export default function Navbar(){
             verticalAlign:"top",
             fontWeight:200,
             cursor:"pointer"}}
+            onClick={()=>{history.push("/signin")}}
             >Sign In</h2>
               <h2
               style={{
@@ -149,6 +154,7 @@ export default function Navbar(){
             verticalAlign:"top",
             fontWeight:200,
             cursor:"pointer"}}
+            onClick={()=>{history.push("/signup")}}
             >Register</h2>
               <h2
               style={{
