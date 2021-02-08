@@ -6,7 +6,8 @@ import SignIn from './components/Screens/SignIn/SignIn';
 import SignUp from './components/Screens/SignUp/SignUp';
 import OrganizationSignIn from './components/Screens/OrganizationSignIn/OrganizationSignIn';
 import OrganizationSignUp from './components/Screens/OrganizationSignUp/OrganizationSignUp';
-import CreatePoll from './components/Screens/CreatePoll/CreatePoll';
+import CreatePersonalPoll from './components/Screens/CreatePersonalPoll/CreatePersonalPoll';
+import CreateOrganizationPoll from './components/Screens/CreateOrganizationPoll/CreateOrgnizationPoll';
 import AllOrganizationPolls from './components/Screens/AllOrganizationPolls/AllOrganizationPolls';
 import AllPersonalPolls from './components/Screens/AllPersonalPolls/AllPersonalPolls';
 import SubscribedOrganizationPolls from './components/Screens/SubscribedOrganizationPolls/SubscribedOrganizationPolls';
@@ -24,7 +25,8 @@ function App() {
         <Route path="/signup" component={SignUp} />
         <Route path="/organizationsignin" component={OrganizationSignIn} />
         <Route path="/organizationsignup" component={OrganizationSignUp} />
-        <Route path="/createpoll" component={CreatePoll} />
+        <Route path="/createpersonalpoll" component={CreatePersonalPoll} />
+        <Route path="/createorganizationpoll" component={CreateOrganizationPoll} />
         <Route path="/allorganizationpolls" component={AllOrganizationPolls} />
         <Route path="/allpersonalpolls" component={AllPersonalPolls} />
         <Route path="/subscribedorganizationpolls" component={SubscribedOrganizationPolls} /> 
