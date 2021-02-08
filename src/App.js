@@ -30,7 +30,7 @@ function App() {
         <Route path="/allorganizationpolls" component={AllOrganizationPolls} />
         <Route path="/allpersonalpolls" component={AllPersonalPolls} />
         <Route path="/subscribedorganizationpolls" component={SubscribedOrganizationPolls} /> 
-        <Route path="/organizationprofile" component={OrganizationProfile} />
+        <Route path="/organizationprofile/:id" component={OrganizationProfile} />
       </Switch>
     </BrowserRouter>
   );

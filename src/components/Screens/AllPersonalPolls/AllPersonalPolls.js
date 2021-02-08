@@ -1,11 +1,34 @@
+import {useState, useEffect} from 'react';
+import {useHistory} from 'react-router-dom';
 import "./AllPersonalPolls.css";
 import Grid from '@material-ui/core/Grid';
-import PollData from '../../../PollData';
-import org_img from '../../../img/org_img.jpg';
 import HowToVoteIcon from '@material-ui/icons/HowToVote';
+const jwt = require('jsonwebtoken');
 
 const AllPersonalPolls = ()=>{
-    console.log(PollData)
+    const [PollData, setPollData] = useState([]);
+    const history = useHistory();
+
+    useEffect(()=>{
+        try{
+            const decodedToken = jwt.verify(localStorage.getItem("user"),process.env.REACT_APP_JWT_SECRET)
+            fetch("http://localhost:5000/poll/personal/getallpolls",
+            {
+                method:"get",
+                headers:{
+                    "Content-Type":"application/json",
+                },
+            })
+            .then(res=>res.json())
+            .then(result=>{
+                console.log(result)
+                setPollData(result.polls)
+            })
+        }catch{
+            history.push("/signin")
+        }
+    },[]);
+
     return(
         <div className="all_content_all_personal_polls">
             <h1>ALL PERSONAL POLLS</h1>
@@ -16,8 +39,8 @@ const AllPersonalPolls = ()=>{
                             <div className="poll_card">
                                 <div className="poll_card_content">
                                 <div className="color_section"></div>
-                                <img className="person_image" src={org_img} />
-                                <h2 className="person_name_poll">Person name</h2>
+                                <img className="person_image" src={data.createdBy.pic} />
+                                <h2 className="person_name_poll">{data.createdBy.name}</h2>
                                 <p className="person_poll_question">{data.question}</p>
                                 <HowToVoteIcon
                                 className="how_to_vote_icon"></HowToVoteIcon>
