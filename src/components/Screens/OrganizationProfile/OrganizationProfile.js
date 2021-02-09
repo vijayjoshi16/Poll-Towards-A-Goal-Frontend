@@ -2,7 +2,6 @@ import {useState, useEffect} from 'react';
 import {useHistory} from 'react-router-dom';
 import "./OrganizationProfile.css";
 import Grid from '@material-ui/core/Grid';
-import PollData from '../../../PollData';
 import EmailIcon from '@material-ui/icons/Email';
 import HowToVoteIcon from '@material-ui/icons/HowToVote';
 const jwt = require('jsonwebtoken');
