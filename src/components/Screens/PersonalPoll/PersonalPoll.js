@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react';
 import {useHistory} from 'react-router-dom';
-import './OrganizationPoll.css';
+import './PersonalPoll.css';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -12,7 +12,7 @@ import Grid from '@material-ui/core/Grid';
 import Dialog from "@material-ui/core/Dialog";
 const jwt = require('jsonwebtoken');
 
-const OrganizationPoll = (props)=>{
+const PersonalPoll = (props)=>{
     const [userId, setUserId] = useState("");
     const [pollData, setPollData] = useState({
         question: "Loading...",
@@ -42,7 +42,7 @@ const OrganizationPoll = (props)=>{
             const decodedToken = jwt.verify(localStorage.getItem("user"),process.env.REACT_APP_JWT_SECRET);
             setUserId(decodedToken._id);
             fetch(
-                `http://localhost:5000/poll/organization/${props.location.pathname.substring(18)}`,
+                `http://localhost:5000/poll/personal/${props.location.pathname.substring(14)}`,
                 {
                     method: "get",
                     headers:{
@@ -91,7 +91,7 @@ const OrganizationPoll = (props)=>{
             const index = pollData.options.findIndex((data)=>{return data.optionContent===vote})+1;
             console.log(index)
             fetch(
-                `http://localhost:5000/poll/organization/vote/${props.location.pathname.substring(18)}`,
+                `http://localhost:5000/poll/personal/vote/${props.location.pathname.substring(14)}`,
                 {
                     method: "post",
                     headers:{
@@ -123,7 +123,7 @@ const OrganizationPoll = (props)=>{
                 })}
                 <HowToVoteIcon></HowToVoteIcon>
                 <span className="vote_count">{pollData.votes.length} votes till now</span>
-                <p className="vote_count">Conducted By : Cool Organization</p>
+                <p className="vote_count">Conducted By : Cool Person</p>
                 <h1>RESULTS</h1>
                 
                     {pollData.options.map((data,index)=>{
@@ -179,4 +179,4 @@ const OrganizationPoll = (props)=>{
     )
 }
 
-export default OrganizationPoll;
+export default PersonalPoll;

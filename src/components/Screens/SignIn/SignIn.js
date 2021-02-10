@@ -1,10 +1,22 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
+import {useHistory} from 'react-router-dom';
 import './SignIn.css';
 import TextField from "@material-ui/core/TextField";
+const jwt = require('jsonwebtoken');
 
 const SignIn = ()=>{
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const history = useHistory();
+
+    useEffect(()=>{
+        try{
+            const decodedToken = jwt.verify(localStorage.getItem("organization"),process.env.REACT_APP_JWT_SECRET);
+            history.push(`/organizationprofile/${decodedToken._id}`);
+        }catch{
+            
+        }
+    },[]);
 
     const PostData = ()=>{
         if(!email){
@@ -27,7 +39,9 @@ const SignIn = ()=>{
             .then(result=>{
                 console.log(result);
                 if(result.message==="Logged in successfully!"){
-                    localStorage.setItem("user",result.token)
+                    localStorage.setItem("user",result.token);
+                    history.push('/allorganizationpolls');
+                    window.location.reload();
                 }
             })
         }

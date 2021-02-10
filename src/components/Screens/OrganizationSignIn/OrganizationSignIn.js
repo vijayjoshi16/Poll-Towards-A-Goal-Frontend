@@ -1,10 +1,22 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
+import {useHistory} from 'react-router-dom';
 import './OrganizationSignIn.css';
 import TextField from "@material-ui/core/TextField";
+const jwt = require('jsonwebtoken');
 
 const OraganizationSignIn = ()=>{
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const history = useHistory();
+
+    useEffect(()=>{
+        try{
+            const decodedToken = jwt.verify(localStorage.getItem("user"),process.env.REACT_APP_JWT_SECRET);
+            history.push(`/allorganizationpolls`);
+        }catch{
+            
+        }
+    },[]);
 
     const PostData = ()=>{
         if(!email){
@@ -28,6 +40,8 @@ const OraganizationSignIn = ()=>{
                 console.log(result);
                 if(result.message==="Logged in successfully!"){
                     localStorage.setItem("organization",result.token)
+                    history.push('/signin');
+                    window.location.reload();
                 }
             })
         }
@@ -36,7 +50,7 @@ const OraganizationSignIn = ()=>{
     return(
         <div>
             <div className="org_login_card">
-                <h1 className="org_signin_heading">SIGN IN</h1>
+                <h1 className="org_signin_heading">ORG SIGN IN</h1>
                 <div className="org_signin_details">
                 <TextField
                     id="outlined-primary"

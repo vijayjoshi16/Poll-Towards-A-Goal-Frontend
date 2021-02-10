@@ -10,9 +10,9 @@ import CreatePersonalPoll from './components/Screens/CreatePersonalPoll/CreatePe
 import CreateOrganizationPoll from './components/Screens/CreateOrganizationPoll/CreateOrgnizationPoll';
 import AllOrganizationPolls from './components/Screens/AllOrganizationPolls/AllOrganizationPolls';
 import AllPersonalPolls from './components/Screens/AllPersonalPolls/AllPersonalPolls';
-import SubscribedOrganizationPolls from './components/Screens/SubscribedOrganizationPolls/SubscribedOrganizationPolls';
 import OrganizationProfile from './components/Screens/OrganizationProfile/OrganizationProfile';
 import OrganizationPoll from './components/Screens/OrganizationPoll/OrganizationPoll';
+import PersonalPoll from './components/Screens/PersonalPoll/PersonalPoll';
 
 function App() {
   return (
@@ -30,9 +30,9 @@ function App() {
         <Route path="/createorganizationpoll" component={CreateOrganizationPoll} />
         <Route path="/allorganizationpolls" component={AllOrganizationPolls} />
         <Route path="/allpersonalpolls" component={AllPersonalPolls} />
-        <Route path="/subscribedorganizationpolls" component={SubscribedOrganizationPolls} /> 
         <Route path="/organizationprofile/:id" component={OrganizationProfile} />
         <Route path="/organizationpoll/:id" component={OrganizationPoll} />
+        <Route path="/personalpoll/:id" component={PersonalPoll} />
       </Switch>
     </BrowserRouter>
   );

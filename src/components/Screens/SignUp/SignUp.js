@@ -1,6 +1,8 @@
 import {useState, useEffect} from 'react';
+import {useHistory} from 'react-router-dom';
 import './SignUp.css';
 import TextField from "@material-ui/core/TextField";
+const jwt = require('jsonwebtoken');
 
 const SignUp = ()=>{
     const [name, setName] = useState("");
@@ -8,6 +10,16 @@ const SignUp = ()=>{
     const [password, setPassword] = useState("");
     const [image,setImage] = useState("");
     const [url, setUrl] = useState(undefined);
+    const history = useHistory();
+
+    useEffect(()=>{
+        try{
+            const decodedToken = jwt.verify(localStorage.getItem("organization"),process.env.REACT_APP_JWT_SECRET);
+            history.push(`/organizationprofile/${decodedToken._id}`);
+        }catch{
+            
+        }
+    },[]);
 
     useEffect(()=>{
         if(!name || !password || !url || !email){

@@ -1,6 +1,8 @@
 import {useState, useEffect} from 'react';
+import {useHistory} from 'react-router-dom';
 import './OrganizationSignUp.css';
 import TextField from "@material-ui/core/TextField";
+const jwt = require('jsonwebtoken');
 
 const OraganizationSignUp = ()=>{
     const [name, setName] = useState("");
@@ -8,6 +10,16 @@ const OraganizationSignUp = ()=>{
     const [password, setPassword] = useState("");
     const [image,setImage] = useState("");
     const [url, setUrl] = useState(undefined);
+    const history = useHistory();
+
+    useEffect(()=>{
+        try{
+            const decodedToken = jwt.verify(localStorage.getItem("user"),process.env.REACT_APP_JWT_SECRET);
+            history.push(`/allorganizationpolls`);
+        }catch{
+            
+        }
+    },[]);
     
     useEffect(()=>{
         if(!name || !password || !url || !email){
@@ -72,7 +84,7 @@ const OraganizationSignUp = ()=>{
     return(
         <div>
             <div className="org_singup_card">
-                <h1 className="org_signup_heading">SIGN UP</h1>
+                <h1 className="org_signup_heading">ORG SIGN UP</h1>
                 <div className="org_signup_details">
                 <TextField
                     id="outlined-primary"

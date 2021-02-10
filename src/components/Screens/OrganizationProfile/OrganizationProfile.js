@@ -35,7 +35,28 @@ const OrganizationProfile = (props)=>{
                 }
             })
         }catch{
-            history.push("/signin")
+            try{
+                const decodedToken = jwt.verify(localStorage.getItem("organization"),process.env.REACT_APP_JWT_SECRET);
+                fetch(
+                    `http://localhost:5000/organization/${props.location.pathname.substring(21)}`,
+                    {
+                        method: "get",
+                        headers:{
+                            "Content-type": "application/json",
+                        },
+                    }
+                )
+                .then(res=>res.json())
+                .then(result=>{
+                    console.log(result)
+                    if(result.message==="Success"){
+                        setOrgData(result.organization)
+                    }
+                })
+            }catch{
+                history.push("/signin")
+            }
+            
         }
     },[]);
     
@@ -54,9 +75,6 @@ const OrganizationProfile = (props)=>{
                     <HowToVoteIcon className="email_icon_org_profile"></HowToVoteIcon>
                     <span className="org_email">{orgData.polls.length} polls conducted till now</span>
                     <br></br>
-                    <div className="follow_button">
-                        Follow
-                    </div>
                     <div className="color_section_bottom"></div>
                     </div>
                 </Grid>
