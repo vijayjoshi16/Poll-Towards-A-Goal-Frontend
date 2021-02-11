@@ -13,6 +13,7 @@ import AllPersonalPolls from './components/Screens/AllPersonalPolls/AllPersonalP
 import OrganizationProfile from './components/Screens/OrganizationProfile/OrganizationProfile';
 import OrganizationPoll from './components/Screens/OrganizationPoll/OrganizationPoll';
 import PersonalPoll from './components/Screens/PersonalPoll/PersonalPoll';
+import Footer from './components/Footer/Footer';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
       <header>
         <Navbar />
       </header>
+      <div className="screens">
       <Switch>
         <Route exact path="/" component={HomeScreen} />
         <Route path="/signin" component={SignIn} />
@@ -34,6 +36,8 @@ function App() {
         <Route path="/organizationpoll/:id" component={OrganizationPoll} />
         <Route path="/personalpoll/:id" component={PersonalPoll} />
       </Switch>
+      </div>
+      <Footer></Footer>
     </BrowserRouter>
   );
 }

@@ -53,14 +53,17 @@ export default function Navbar(){
             marginTop:"5px",
             marginLeft:"50px",
             cursor:"pointer"
-          }}></PollOutlinedIcon>
+          }}
+          onClick={()=>{history.push("/")}}></PollOutlinedIcon>
           <h1 
           style={{
             display:"inline",
             fontSize:"2rem",
             marginLeft:"20px",
             color:"#3f51b5",
-            verticalAlign:"top"}}>
+            verticalAlign:"top",
+            cursor:"pointer"}}
+            onClick={()=>{history.push("/")}}>
             POLLING APP
             </h1>
           {
@@ -243,14 +246,17 @@ export default function Navbar(){
             marginTop:"5px",
             marginLeft:"30px",
             cursor:"pointer"
-          }}></PollOutlinedIcon>
+          }}
+          onClick={()=>{history.push("/")}}></PollOutlinedIcon>
           <h1 
           style={{
             display:"inline",
             fontSize:"2rem",
             marginLeft:"20px",
             color:"#3f51b5",
-            verticalAlign:"top"}}>
+            verticalAlign:"top",
+            cursor:"pointer"}}
+            onClick={()=>{history.push("/")}}>
             POLLING APP
             </h1>
             <div
@@ -290,7 +296,8 @@ export default function Navbar(){
               verticalAlign:"top",
               fontWeight:200,
               cursor:"pointer"}}
-              onClick={()=>{history.push('/allpersonalpolls')}}
+              onClick={()=>{history.push('/allpersonalpolls');
+              setOpen(false)}}
               >Personal Polls</h2>
                 <h2
                 style={{
@@ -300,7 +307,8 @@ export default function Navbar(){
               verticalAlign:"top",
               fontWeight:200,
               cursor:"pointer"}}
-              onClick={()=>{history.push('/allorganizationpolls')}}
+              onClick={()=>{history.push('/allorganizationpolls');
+              setOpen(false)}}
               >Organization Polls</h2>
               <h2
                 style={{
@@ -310,7 +318,8 @@ export default function Navbar(){
               verticalAlign:"top",
               fontWeight:200,
               cursor:"pointer"}}
-              onClick={()=>{history.push('/createpersonalpoll')}}
+              onClick={()=>{history.push('/createpersonalpoll');
+              setOpen(false)}}
               >Create Poll</h2>
                 <h2
                 style={{
@@ -326,6 +335,8 @@ export default function Navbar(){
               onClick={()=>{
                 localStorage.removeItem("user");
                 history.push('/signin');
+                setOpen(false);
+                window.location.reload();
               }}
               >Logout</h2>
               </div>
@@ -343,7 +354,8 @@ export default function Navbar(){
               fontWeight:200,
               cursor:"pointer"}}
               onClick={()=>{
-                history.push(`/organizationprofile/${jwt.verify(localStorage.getItem("organization"),process.env.REACT_APP_JWT_SECRET)._id}`)
+                history.push(`/organizationprofile/${jwt.verify(localStorage.getItem("organization"),process.env.REACT_APP_JWT_SECRET)._id}`);
+                setOpen(false)
               }}
               >Profile</h2>
               <h2
@@ -354,7 +366,8 @@ export default function Navbar(){
               verticalAlign:"top",
               fontWeight:200,
               cursor:"pointer"}}
-              onClick={()=>{history.push('/createorganizationpoll')}}
+              onClick={()=>{history.push('/createorganizationpoll');
+              setOpen(false)}}
               >Create Poll</h2>
                 <h2
                 style={{
@@ -370,6 +383,8 @@ export default function Navbar(){
               onClick={()=>{
                 localStorage.removeItem("organization");
                 history.push('/organizationsignin');
+                setOpen(false);
+                window.location.reload();
               }}
               >Logout</h2>
               </div>
@@ -384,7 +399,8 @@ export default function Navbar(){
               verticalAlign:"top",
               fontWeight:200,
               cursor:"pointer"}}
-              onClick={()=>{history.push("/signin")}}
+              onClick={()=>{history.push("/signin");
+              setOpen(false)}}
               >SignIn</h2>
                 <h2
                 style={{
@@ -394,7 +410,8 @@ export default function Navbar(){
               verticalAlign:"top",
               fontWeight:200,
               cursor:"pointer"}}
-              onClick={()=>{history.push("/signup")}}
+              onClick={()=>{history.push("/signup");
+              setOpen(false)}}
               >Register</h2>
               <h2
               style={{
@@ -407,7 +424,8 @@ export default function Navbar(){
               padding:"5px",
               borderRadius:"5px",
               cursor:"pointer"}}
-              onClick={()=>{history.push("/organizationsignin")}}
+              onClick={()=>{history.push("/organizationsignin");
+              setOpen(false)}}
               >Org SignIn</h2>
               <h2
               style={{
@@ -420,7 +438,8 @@ export default function Navbar(){
               padding:"5px",
               borderRadius:"5px",
               cursor:"pointer"}}
-              onClick={()=>{history.push("/organizationsignup")}}
+              onClick={()=>{history.push("/organizationsignup");
+              setOpen(false)}}
               >Org Register</h2>
               </div>
           }

@@ -2,7 +2,11 @@ import {useState, useEffect} from 'react';
 import {useHistory} from 'react-router-dom';
 import './SignUp.css';
 import TextField from "@material-ui/core/TextField";
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const jwt = require('jsonwebtoken');
+
+toast.configure();
 
 const SignUp = ()=>{
     const [name, setName] = useState("");
@@ -23,7 +27,15 @@ const SignUp = ()=>{
 
     useEffect(()=>{
         if(!name || !password || !url || !email){
-            console.log("Please enter all the credentials to sign up.")
+            toast('Please enter all credentials to sign up!', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                });
         }else{
             fetch("http://localhost:5000/user/signup",
             {
@@ -40,7 +52,28 @@ const SignUp = ()=>{
             })
             .then(res=>res.json())
             .then(result=>{
-                console.log(result);
+                if(result.message==="Saved user successfully!"){
+                    toast.success('Saved user successfully!', {
+                        position: "top-right",
+                        autoClose: 2000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        });
+                        history.push('/signin');
+                }else{
+                    toast.error('Some error occured!', {
+                        position: "top-right",
+                        autoClose: 2000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        });
+                }
             })
         }
     },[url]);
@@ -58,6 +91,17 @@ const SignUp = ()=>{
         .then(data=>{
             console.log(data.url)
             setUrl(data.url)
+            if(data.url===undefined){
+                toast.error('Some error occured!', {
+                    position: "top-right",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    });
+            }
         })
         .catch(err=>{
             console.log(err);
@@ -66,16 +110,40 @@ const SignUp = ()=>{
 
     const PostData = ()=>{
         if(!name){
-            console.log("Please enter name");
+            toast.error('Please enter name!', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                });
             return;
         }
         const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         if(!re.test(email)){
-            console.log("Invalid email");
+            toast.error('Invalid email!', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                });
             return;
         }
         if(password.length<8){
-            console.log("Password length should be atleast 8");
+            toast.error('Password length should be atleast 8!', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                });
             return;
         }
         UploadImage();

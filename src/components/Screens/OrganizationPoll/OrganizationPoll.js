@@ -10,7 +10,11 @@ import HowToVoteIcon from '@material-ui/icons/HowToVote';
 import SendIcon from '@material-ui/icons/Send';
 import Grid from '@material-ui/core/Grid';
 import Dialog from "@material-ui/core/Dialog";
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const jwt = require('jsonwebtoken');
+
+toast.configure();
 
 const OrganizationPoll = (props)=>{
     const [userId, setUserId] = useState("");
@@ -30,6 +34,9 @@ const OrganizationPoll = (props)=>{
                 optionIndex:"2"
             }
         ],
+        createdBy:{
+            name:"Loading..."
+        },
         votes:[1,2,2,2,2,3,3,3,3]
     });
     const [vote, setVote] = useState(undefined);
@@ -76,7 +83,15 @@ const OrganizationPoll = (props)=>{
 
     const voteButtonHandler = ()=>{
         if(pollData.votes.find((data)=>{return data.votedBy===userId})){
-            console.log("Already voted to this poll");
+            toast.error('Already voted to this poll!', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                });
         }else{
             console.log("Good to go");
             setDialogOpen(true);
@@ -85,7 +100,15 @@ const OrganizationPoll = (props)=>{
 
     const PostData = ()=>{
         if(vote === undefined){
-            console.log("Please select an option")
+            toast.error('Please select an option!', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                });
         }else{
             console.log(vote);
             const index = pollData.options.findIndex((data)=>{return data.optionContent===vote})+1;
@@ -106,6 +129,28 @@ const OrganizationPoll = (props)=>{
             .then(res=>res.json())
             .then(result=>{
                 console.log(result);
+                if(result.poll){
+                    toast.success('Successfully voted to this poll', {
+                        position: "top-right",
+                        autoClose: 2000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        });
+                        window.location.reload();
+                }else{
+                    toast.error('Some error occured!', {
+                        position: "top-right",
+                        autoClose: 2000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        });
+                }
             })
         }
     }
@@ -123,7 +168,9 @@ const OrganizationPoll = (props)=>{
                 })}
                 <HowToVoteIcon></HowToVoteIcon>
                 <span className="vote_count">{pollData.votes.length} votes till now</span>
-                <p className="vote_count">Conducted By : Cool Organization</p>
+                <p className="vote_count"
+                style={{cursor:"pointer"}}
+                onClick={()=>{history.push(`/organizationprofile/${pollData.createdBy._id}`)}}>Conducted By : {pollData.createdBy.name}</p>
                 <h1>RESULTS</h1>
                 
                     {pollData.options.map((data,index)=>{

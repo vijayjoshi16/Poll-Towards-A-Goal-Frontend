@@ -2,7 +2,11 @@ import {useState, useEffect} from 'react';
 import {useHistory} from 'react-router-dom';
 import './OrganizationSignIn.css';
 import TextField from "@material-ui/core/TextField";
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const jwt = require('jsonwebtoken');
+
+toast.configure();
 
 const OraganizationSignIn = ()=>{
     const [email, setEmail] = useState("");
@@ -20,9 +24,25 @@ const OraganizationSignIn = ()=>{
 
     const PostData = ()=>{
         if(!email){
-            console.log("Please enter email");
+            toast.error('Please enter email!', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                });
         }else if(!password){
-            console.log("Please enter password");
+            toast.error('Please enter password!', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                });
         }else{
             fetch("http://localhost:5000/organization/signin",
             {
@@ -39,9 +59,28 @@ const OraganizationSignIn = ()=>{
             .then(result=>{
                 console.log(result);
                 if(result.message==="Logged in successfully!"){
+                    toast.success('Logged in successfully!', {
+                        position: "top-right",
+                        autoClose: 2000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        });
                     localStorage.setItem("organization",result.token)
                     history.push('/signin');
                     window.location.reload();
+                }else{
+                    toast.error('Invalid credentials!', {
+                        position: "top-right",
+                        autoClose: 2000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        });
                 }
             })
         }

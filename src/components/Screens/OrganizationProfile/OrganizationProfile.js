@@ -82,7 +82,8 @@ const OrganizationProfile = (props)=>{
                     <div className="org_all_polls">
                         {orgData.polls.map((data)=>{
                             return(
-                                <div className="org_poll_card">
+                                <div className="org_poll_card"
+                                onClick={()=>{history.push(`/organizationpoll/${data._id}`)}}>
                                     <div className="color_section"></div>
                                     <h2 className="option_content">{data.question}</h2>
                                     {data.options.map((option,index)=>{

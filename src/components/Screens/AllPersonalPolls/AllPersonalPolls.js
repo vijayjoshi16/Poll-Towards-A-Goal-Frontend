@@ -36,7 +36,8 @@ const AllPersonalPolls = ()=>{
                 {PollData.map((data)=>{
                     return(
                         <Grid item xs={12} sm={6} md={4} lg={3}>
-                            <div className="poll_card">
+                            <div className="poll_card"
+                            onClick={()=>{history.push(`/personalpoll/${data._id}`)}}>
                                 <div className="poll_card_content">
                                 <div className="color_section"></div>
                                 <img className="person_image" src={data.createdBy.pic} />

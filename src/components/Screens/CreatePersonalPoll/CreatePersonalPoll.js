@@ -3,7 +3,11 @@ import {useHistory} from 'react-router-dom';
 import './CreatePersonalPoll.css';
 import Grid from '@material-ui/core/Grid';
 import TextField from "@material-ui/core/TextField";
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const jwt = require('jsonwebtoken');
+
+toast.configure();
 
 const CreatePersonalPoll = ()=>{
     const [question, setQuestion] = useState("");
@@ -23,9 +27,25 @@ const CreatePersonalPoll = ()=>{
 
     const PostData = ()=>{
         if(!question){
-            console.log("Please enter question");
+            toast.error('Please enter a question!', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                });
         }else if(options.length === 0){
-            console.log("Please enter an option");
+            toast.error('Please enter atleast one option!', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                });
         }else{
             fetch("http://localhost:5000/poll/createpersonalpoll",
             {
@@ -42,6 +62,28 @@ const CreatePersonalPoll = ()=>{
             .then(res=>res.json())
             .then(result=>{
                 console.log(result)
+                if(result.message === "Success!"){
+                    toast.success('Created poll successfully!', {
+                        position: "top-right",
+                        autoClose: 2000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        });
+                        history.push(`/personalpoll/${result.poll._id}`);
+                }else{
+                    toast.error('Some error occured!', {
+                        position: "top-right",
+                        autoClose: 2000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        });
+                }
             })
         }
     }
