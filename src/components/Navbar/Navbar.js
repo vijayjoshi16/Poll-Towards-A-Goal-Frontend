@@ -118,7 +118,7 @@ export default function Navbar(){
               cursor:"pointer"}}
               onClick={()=>{
                 localStorage.removeItem("user");
-                history.push('/signin');
+                history.push('/');
                 window.location.reload();
               }}
               >Logout</h2>
@@ -166,7 +166,7 @@ export default function Navbar(){
               cursor:"pointer"}}
               onClick={()=>{
                 localStorage.removeItem("organization");
-                history.push('/organizationsignin');
+                history.push('/');
                 window.location.reload();
               }}
               >Logout</h2>
@@ -334,7 +334,7 @@ export default function Navbar(){
               cursor:"pointer"}}
               onClick={()=>{
                 localStorage.removeItem("user");
-                history.push('/signin');
+                history.push('/');
                 setOpen(false);
                 window.location.reload();
               }}
@@ -382,7 +382,7 @@ export default function Navbar(){
               cursor:"pointer"}}
               onClick={()=>{
                 localStorage.removeItem("organization");
-                history.push('/organizationsignin');
+                history.push('/');
                 setOpen(false);
                 window.location.reload();
               }}

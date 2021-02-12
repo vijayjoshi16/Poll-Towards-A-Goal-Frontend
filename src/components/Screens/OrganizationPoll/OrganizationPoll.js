@@ -76,7 +76,38 @@ const OrganizationPoll = (props)=>{
                 }
             })
         }catch{
-            history.push("/signin")
+            try{
+                const decodedToken = jwt.verify(localStorage.getItem("organization"),process.env.REACT_APP_JWT_SECRET);
+                fetch(
+                    `https://poll-towards-a-goal.herokuapp.com/poll/organization/${props.location.pathname.substring(18)}`,
+                    {
+                        method: "get",
+                        headers:{
+                            "Content-type": "application/json",
+                        },
+                    }
+                )
+                .then(res=>res.json())
+                .then(result=>{
+                    if(result.message==="Success"){
+                        setPollData(result.poll);
+                        var op = new Array(result.poll.options.length).fill(0);
+                        try{
+                        if(result.poll.votes!==[]){
+                            result.poll.votes.forEach((data)=>{
+                                op[data.option-1]++;
+                            });
+                        }
+                        }catch{
+    
+                        }
+                        setOptionCount(op);
+    
+                    }
+                })
+            }catch{
+                history.push("/signin");
+            }
         }
     },[]);
 
@@ -189,11 +220,17 @@ const OrganizationPoll = (props)=>{
                             </Grid>
                         );
                     })} 
+                {userId!==""
+                ?
                 <div className="vote"
                 onClick={()=>{voteButtonHandler()}}>
                     <SendIcon></SendIcon>
                     <span className="vote_count">VOTE</span>
                 </div>
+                :
+                <div></div>
+                }
+                
                 
                 <Dialog
                 open={dialogOpen}
