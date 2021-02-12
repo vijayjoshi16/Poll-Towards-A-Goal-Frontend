@@ -62,7 +62,7 @@ const OraganizationSignUp = ()=>{
                         draggable: true,
                         progress: undefined,
                         });
-                        history.push('/organizationsignin');
+                        history.push('/');
                 }else{
                     toast.error('Some error occured!', {
                         position: "top-right",

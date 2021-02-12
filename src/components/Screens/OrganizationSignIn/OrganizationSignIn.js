@@ -68,7 +68,7 @@ const OraganizationSignIn = ()=>{
                         progress: undefined,
                         });
                     localStorage.setItem("organization",result.token)
-                    history.push('/signin');
+                    history.push('/');
                     window.location.reload();
                 }else{
                     toast.error('Invalid credentials!', {

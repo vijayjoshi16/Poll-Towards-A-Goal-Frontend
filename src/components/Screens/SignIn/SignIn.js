@@ -68,7 +68,7 @@ const SignIn = ()=>{
                         progress: undefined,
                         });
                     localStorage.setItem("user",result.token);
-                    history.push('/allorganizationpolls');
+                    history.push('/');
                     window.location.reload();
                 }else{
                     toast.error('Invalid credentials!', {
