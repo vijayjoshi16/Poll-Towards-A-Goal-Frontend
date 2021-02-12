@@ -61,7 +61,6 @@ const CreateOrganizationPoll = ()=>{
             })
             .then(res=>res.json())
             .then(result=>{
-                console.log(result)
                 if(result.message === "Success!"){
                     toast.success('Created poll successfully!', {
                         position: "top-right",

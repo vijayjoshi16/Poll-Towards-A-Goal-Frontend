@@ -29,7 +29,6 @@ const OrganizationProfile = (props)=>{
             )
             .then(res=>res.json())
             .then(result=>{
-                console.log(result)
                 if(result.message==="Success"){
                     setOrgData(result.organization)
                 }
@@ -48,7 +47,6 @@ const OrganizationProfile = (props)=>{
                 )
                 .then(res=>res.json())
                 .then(result=>{
-                    console.log(result)
                     if(result.message==="Success"){
                         setOrgData(result.organization)
                     }
@@ -60,7 +58,6 @@ const OrganizationProfile = (props)=>{
         }
     },[]);
     
-    console.log(orgData)
     return(
         <div className="org_profile_all_content">
             <Grid container>

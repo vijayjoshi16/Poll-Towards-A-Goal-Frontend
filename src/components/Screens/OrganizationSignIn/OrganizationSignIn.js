@@ -57,7 +57,6 @@ const OraganizationSignIn = ()=>{
             })
             .then(res=>res.json())
             .then(result=>{
-                console.log(result);
                 if(result.message==="Logged in successfully!"){
                     toast.success('Logged in successfully!', {
                         position: "top-right",

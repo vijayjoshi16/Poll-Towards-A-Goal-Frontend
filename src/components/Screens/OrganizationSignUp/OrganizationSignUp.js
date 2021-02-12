@@ -89,7 +89,6 @@ const OraganizationSignUp = ()=>{
         })
         .then(res=>res.json())
         .then(data=>{
-            console.log(data.url)
             setUrl(data.url)
             if(data.url===undefined){
                 toast.error('Some error occured!', {
@@ -104,7 +103,6 @@ const OraganizationSignUp = ()=>{
             }
         })
         .catch(err=>{
-            console.log(err);
         })
     }
 

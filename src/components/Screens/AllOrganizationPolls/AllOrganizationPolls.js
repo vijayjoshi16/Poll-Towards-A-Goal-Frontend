@@ -21,7 +21,6 @@ const AllOrganizationPolls = ()=>{
             })
             .then(res=>res.json())
             .then(result=>{
-                console.log(result)
                 setPollData(result.polls)
             })
         }catch{

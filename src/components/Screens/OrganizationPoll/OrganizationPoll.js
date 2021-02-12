@@ -59,7 +59,6 @@ const OrganizationPoll = (props)=>{
             )
             .then(res=>res.json())
             .then(result=>{
-                console.log(result)
                 if(result.message==="Success"){
                     setPollData(result.poll);
                     var op = new Array(result.poll.options.length).fill(0);
@@ -93,7 +92,6 @@ const OrganizationPoll = (props)=>{
                 progress: undefined,
                 });
         }else{
-            console.log("Good to go");
             setDialogOpen(true);
         }
     }
@@ -110,9 +108,7 @@ const OrganizationPoll = (props)=>{
                 progress: undefined,
                 });
         }else{
-            console.log(vote);
             const index = pollData.options.findIndex((data)=>{return data.optionContent===vote})+1;
-            console.log(index)
             fetch(
                 `http://localhost:5000/poll/organization/vote/${props.location.pathname.substring(18)}`,
                 {
@@ -128,7 +124,6 @@ const OrganizationPoll = (props)=>{
             )
             .then(res=>res.json())
             .then(result=>{
-                console.log(result);
                 if(result.poll){
                     toast.success('Successfully voted to this poll', {
                         position: "top-right",
