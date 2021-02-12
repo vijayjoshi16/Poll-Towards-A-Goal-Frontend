@@ -165,7 +165,7 @@ const OrganizationPoll = (props)=>{
                         draggable: true,
                         progress: undefined,
                         });
-                        window.location.reload();
+                        history.push('/');
                 }else{
                     toast.error('Some error occured!', {
                         position: "top-right",
