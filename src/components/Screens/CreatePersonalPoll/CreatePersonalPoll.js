@@ -47,7 +47,7 @@ const CreatePersonalPoll = ()=>{
                 progress: undefined,
                 });
         }else{
-            fetch("http://localhost:5000/poll/createpersonalpoll",
+            fetch("https://poll-towards-a-goal.herokuapp.com/poll/createpersonalpoll",
             {
                 method: "post",
                 headers:{

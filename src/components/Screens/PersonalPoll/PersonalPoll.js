@@ -49,7 +49,7 @@ const PersonalPoll = (props)=>{
             const decodedToken = jwt.verify(localStorage.getItem("user"),process.env.REACT_APP_JWT_SECRET);
             setUserId(decodedToken._id);
             fetch(
-                `http://localhost:5000/poll/personal/${props.location.pathname.substring(14)}`,
+                `https://poll-towards-a-goal.herokuapp.com/poll/personal/${props.location.pathname.substring(14)}`,
                 {
                     method: "get",
                     headers:{
@@ -110,7 +110,7 @@ const PersonalPoll = (props)=>{
         }else{
             const index = pollData.options.findIndex((data)=>{return data.optionContent===vote})+1;
             fetch(
-                `http://localhost:5000/poll/personal/vote/${props.location.pathname.substring(14)}`,
+                `https://poll-towards-a-goal.herokuapp.com/poll/personal/vote/${props.location.pathname.substring(14)}`,
                 {
                     method: "post",
                     headers:{

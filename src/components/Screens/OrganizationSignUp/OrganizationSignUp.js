@@ -37,7 +37,7 @@ const OraganizationSignUp = ()=>{
                 progress: undefined,
                 });
         }else{
-            fetch("http://localhost:5000/organization/signup",
+            fetch("https://poll-towards-a-goal.herokuapp.com/organization/signup",
             {
                 method:"post",
                 headers:{

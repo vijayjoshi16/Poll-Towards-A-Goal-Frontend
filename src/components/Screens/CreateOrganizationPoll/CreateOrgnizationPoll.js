@@ -47,7 +47,7 @@ const CreateOrganizationPoll = ()=>{
                 progress: undefined,
                 });
         }else{
-            fetch("http://localhost:5000/poll/createorganizationpoll",
+            fetch("https://poll-towards-a-goal.herokuapp.com/poll/createorganizationpoll",
             {
                 method: "post",
                 headers:{

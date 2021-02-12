@@ -12,7 +12,7 @@ const AllOrganizationPolls = ()=>{
     useEffect(()=>{
         try{
             const decodedToken = jwt.verify(localStorage.getItem("user"),process.env.REACT_APP_JWT_SECRET)
-            fetch("http://localhost:5000/poll/organization/getallpolls",
+            fetch("https://poll-towards-a-goal.herokuapp.com/poll/organization/getallpolls",
             {
                 method:"get",
                 headers:{

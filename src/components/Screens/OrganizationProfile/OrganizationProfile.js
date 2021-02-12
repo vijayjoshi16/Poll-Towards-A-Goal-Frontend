@@ -19,7 +19,7 @@ const OrganizationProfile = (props)=>{
         try{
             const decodedToken = jwt.verify(localStorage.getItem("user"),process.env.REACT_APP_JWT_SECRET)
             fetch(
-                `http://localhost:5000/organization/${props.location.pathname.substring(21)}`,
+                `https://poll-towards-a-goal.herokuapp.com/organization/${props.location.pathname.substring(21)}`,
                 {
                     method: "get",
                     headers:{
@@ -37,7 +37,7 @@ const OrganizationProfile = (props)=>{
             try{
                 const decodedToken = jwt.verify(localStorage.getItem("organization"),process.env.REACT_APP_JWT_SECRET);
                 fetch(
-                    `http://localhost:5000/organization/${props.location.pathname.substring(21)}`,
+                    `https://poll-towards-a-goal.herokuapp.com/organization/${props.location.pathname.substring(21)}`,
                     {
                         method: "get",
                         headers:{

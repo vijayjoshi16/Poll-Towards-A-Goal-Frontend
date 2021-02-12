@@ -49,7 +49,7 @@ const OrganizationPoll = (props)=>{
             const decodedToken = jwt.verify(localStorage.getItem("user"),process.env.REACT_APP_JWT_SECRET);
             setUserId(decodedToken._id);
             fetch(
-                `http://localhost:5000/poll/organization/${props.location.pathname.substring(18)}`,
+                `https://poll-towards-a-goal.herokuapp.com/poll/organization/${props.location.pathname.substring(18)}`,
                 {
                     method: "get",
                     headers:{
@@ -110,7 +110,7 @@ const OrganizationPoll = (props)=>{
         }else{
             const index = pollData.options.findIndex((data)=>{return data.optionContent===vote})+1;
             fetch(
-                `http://localhost:5000/poll/organization/vote/${props.location.pathname.substring(18)}`,
+                `https://poll-towards-a-goal.herokuapp.com/poll/organization/vote/${props.location.pathname.substring(18)}`,
                 {
                     method: "post",
                     headers:{

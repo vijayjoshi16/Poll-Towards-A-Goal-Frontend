@@ -37,7 +37,7 @@ const SignUp = ()=>{
                 progress: undefined,
                 });
         }else{
-            fetch("http://localhost:5000/user/signup",
+            fetch("https://poll-towards-a-goal.herokuapp.com/user/signup",
             {
                 method:"post",
                 headers:{
