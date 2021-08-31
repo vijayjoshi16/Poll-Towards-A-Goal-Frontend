@@ -1,5 +1,3 @@
-# POLL TOWARDS A GOAL
-
 <img src="https://github.com/vijayjoshi16/Poll-Towards-A-Goal-Frontend/blob/assets/assets/logopoll.png" width="400px" height="60px"></img>
 
 ### An ultimate polling web app built using MERN stack
@@ -42,6 +40,10 @@ When you'll make your first API request probably through signin or register scre
 <img src="https://github.com/vijayjoshi16/Poll-Towards-A-Goal-Frontend/blob/assets/assets/vote.png" ></img>
 ### Poll results till now(mobile view)
 <img src="https://github.com/vijayjoshi16/Poll-Towards-A-Goal-Frontend/blob/assets/assets/results.png" ></img>
+
+<h2 align="center">Loved this project?? If yes, don't forget to give it a ⭐ and share it with your friends 😃</h2>
+<h2 align="center">Check out my other works at https://github.com/vijayjoshi16</h2>
+<h1 align="center">Thank You</h1>
 
 # Getting Started with Create React App
 
