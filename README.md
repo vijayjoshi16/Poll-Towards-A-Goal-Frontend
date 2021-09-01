@@ -1,8 +1,8 @@
-<img src="https://github.com/vijayjoshi16/Poll-Towards-A-Goal-Frontend/blob/assets/assets/logopoll.png" width="400px" height="60px"></img>
+<p align="center"><img src="https://github.com/vijayjoshi16/Poll-Towards-A-Goal-Frontend/blob/assets/assets/logopoll.png" width="400px" height="60px"></img></p>
 
-### An ultimate polling web app built using MERN stack
+<h2 align="center">An ultimate polling web app built using MERN stack</h2>
 
-<img src="https://github.com/vijayjoshi16/Poll-Towards-A-Goal-Frontend/blob/assets/assets/final_img.png" ></img>
+<p align="center"><img src="https://github.com/vijayjoshi16/Poll-Towards-A-Goal-Frontend/blob/assets/assets/final_img.png" ></img></p>
 
 ## FEATURES
 
