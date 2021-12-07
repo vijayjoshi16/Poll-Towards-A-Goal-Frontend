@@ -1,9 +1,10 @@
 import {useState, useEffect} from 'react';
-import {useHistory} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 import './SignIn.css';
 import TextField from "@material-ui/core/TextField";
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import LoaderAnimation from '../../LoaderAnimation';
 const jwt = require('jsonwebtoken');
 
 toast.configure();
@@ -11,6 +12,7 @@ toast.configure();
 const SignIn = ()=>{
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [loader, setLoader] = useState(false);
     const history = useHistory();
 
     useEffect(()=>{
@@ -22,28 +24,8 @@ const SignIn = ()=>{
         }
     },[]);
 
-    const PostData = ()=>{
-        if(!email){
-            toast.error('Please enter email!', {
-                position: "top-right",
-                autoClose: 2000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                });
-        }else if(!password){
-            toast.error('Please enter password!', {
-                position: "top-right",
-                autoClose: 2000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                });
-        }else{
+    useEffect(()=>{
+        if(loader){
             fetch("https://poll-towards-a-goal.herokuapp.com/user/signin",
             {
                 method: "post",
@@ -57,6 +39,7 @@ const SignIn = ()=>{
             })
             .then(res=>res.json())
             .then(result=>{
+                setLoader(false);
                 if(result.message==="Logged in successfully!"){
                     toast.success('Logged in successfully!', {
                         position: "top-right",
@@ -83,6 +66,32 @@ const SignIn = ()=>{
                 }
             })
         }
+    },[loader]);
+
+    const PostData = ()=>{
+        if(!email){
+            toast.error('Please enter email!', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                });
+        }else if(!password){
+            toast.error('Please enter password!', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                });
+        }else{
+        setLoader(true)
+        }
     }
 
     return(
@@ -107,10 +116,15 @@ const SignIn = ()=>{
                     color="primary"
                     onChange={(e)=>{setPassword(e.target.value)}}
                 />
-                <div className="signin_button"
+                <br></br>
+                <button className="signin_button"
                 onClick={()=>{PostData()}}>
                     SIGN IN
-                </div>
+                </button>
+                {
+                    loader && <LoaderAnimation />
+                }
+                <p className="redirect_msg">New User? <Link to="/signup">Register here</Link></p>
                 </div>
             </div>
         </div>

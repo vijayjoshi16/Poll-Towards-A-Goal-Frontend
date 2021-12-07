@@ -1,8 +1,9 @@
 import {useState, useEffect} from 'react';
-import {useHistory} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 import './OrganizationSignUp.css';
 import TextField from "@material-ui/core/TextField";
 import {toast} from 'react-toastify';
+import LoaderAnimation from '../../LoaderAnimation';
 import 'react-toastify/dist/ReactToastify.css';
 const jwt = require('jsonwebtoken');
 
@@ -13,6 +14,7 @@ const OraganizationSignUp = ()=>{
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [image,setImage] = useState("");
+    const [loader, setLoader] = useState(false);
     const [url, setUrl] = useState(undefined);
     const history = useHistory();
 
@@ -52,6 +54,7 @@ const OraganizationSignUp = ()=>{
             })
             .then(res=>res.json())
             .then(result=>{
+                setLoader(false);
                 if(result.message==="Saved organization successfully!"){
                     toast.success('Saved organization successfully!', {
                         position: "top-right",
@@ -91,6 +94,7 @@ const OraganizationSignUp = ()=>{
         .then(data=>{
             setUrl(data.url)
             if(data.url===undefined){
+                setLoader(false);
                 toast.error('Some error occured!', {
                     position: "top-right",
                     autoClose: 2000,
@@ -144,6 +148,7 @@ const OraganizationSignUp = ()=>{
                 });
             return;
         }
+        setLoader(true);
         UploadImage();
     }
 
@@ -182,10 +187,14 @@ const OraganizationSignUp = ()=>{
                 <input style={{marginLeft:"35px",marginTop:"30px"}} type="file" onChange={(e)=>{
                     setImage(e.target.files[0]);
                 }} />
-                <div className="org_signup_button"
+                <button className="org_signup_button"
                 onClick={()=>PostData()}>
                     SIGN UP
-                </div>
+                </button>
+                {
+                    loader && <LoaderAnimation />
+                }
+                <p className="redirect_msg">New Organization? <Link to="/organizationsignin">Register here</Link></p>
                 </div>
             </div>
         </div>

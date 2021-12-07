@@ -1,9 +1,10 @@
 import {useState, useEffect} from 'react';
-import {useHistory} from 'react-router-dom';
+import {useHistory, Link} from 'react-router-dom';
 import './OrganizationSignIn.css';
 import TextField from "@material-ui/core/TextField";
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import LoaderAnimation from '../../LoaderAnimation';
 const jwt = require('jsonwebtoken');
 
 toast.configure();
@@ -11,7 +12,53 @@ toast.configure();
 const OraganizationSignIn = ()=>{
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [loader, setLoader] = useState(false);
     const history = useHistory();
+
+    useEffect(()=>{
+        if(loader){
+            fetch("https://poll-towards-a-goal.herokuapp.com/organization/signin",
+            {
+                method: "post",
+                headers:{
+                    "Content-Type":"application/json",
+                },
+                body: JSON.stringify({
+                    email: email,
+                    password: password
+                }),
+            })
+            .then(res=>res.json())
+            .then(result=>{
+                setLoader(false);
+                if(result.message==="Logged in successfully!"){
+                    toast.success('Logged in successfully!', {
+                        position: "top-right",
+                        autoClose: 2000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        });
+                    localStorage.setItem("organization",result.token)
+                    history.push('/');
+                    window.location.reload();
+                }else{
+                    toast.error('Invalid credentials!', {
+                        position: "top-right",
+                        autoClose: 2000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        });
+                }
+            })
+        }
+        
+    },[loader]);
 
     useEffect(()=>{
         try{
@@ -44,44 +91,7 @@ const OraganizationSignIn = ()=>{
                 progress: undefined,
                 });
         }else{
-            fetch("https://poll-towards-a-goal.herokuapp.com/organization/signin",
-            {
-                method: "post",
-                headers:{
-                    "Content-Type":"application/json",
-                },
-                body: JSON.stringify({
-                    email: email,
-                    password: password
-                }),
-            })
-            .then(res=>res.json())
-            .then(result=>{
-                if(result.message==="Logged in successfully!"){
-                    toast.success('Logged in successfully!', {
-                        position: "top-right",
-                        autoClose: 2000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                        });
-                    localStorage.setItem("organization",result.token)
-                    history.push('/');
-                    window.location.reload();
-                }else{
-                    toast.error('Invalid credentials!', {
-                        position: "top-right",
-                        autoClose: 2000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                        });
-                }
-            })
+            setLoader(true);
         }
     }
 
@@ -107,10 +117,15 @@ const OraganizationSignIn = ()=>{
                     color="primary"
                     onChange={(e)=>{setPassword(e.target.value)}}
                 />
-                <div className="org_signin_button"
+                <br></br>
+                <button className="org_signin_button"
                 onClick={()=>{PostData()}}>
                     SIGN IN
-                </div>
+                </button>
+                {
+                    loader && <LoaderAnimation />
+                }
+                <p className="redirect_msg">New User? <Link to="/organizationsignup">Register here</Link></p>
                 </div>
             </div>
         </div>

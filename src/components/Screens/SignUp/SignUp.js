@@ -1,8 +1,9 @@
 import {useState, useEffect} from 'react';
-import {useHistory} from 'react-router-dom';
+import {Link,useHistory} from 'react-router-dom';
 import './SignUp.css';
 import TextField from "@material-ui/core/TextField";
 import {toast} from 'react-toastify';
+import LoaderAnimation from '../../LoaderAnimation';
 import 'react-toastify/dist/ReactToastify.css';
 const jwt = require('jsonwebtoken');
 
@@ -14,6 +15,7 @@ const SignUp = ()=>{
     const [password, setPassword] = useState("");
     const [image,setImage] = useState("");
     const [url, setUrl] = useState(undefined);
+    const [loader, setLoader] = useState(false);
     const history = useHistory();
 
     useEffect(()=>{
@@ -52,6 +54,7 @@ const SignUp = ()=>{
             })
             .then(res=>res.json())
             .then(result=>{
+                setLoader(false);
                 if(result.message==="Saved user successfully!"){
                     toast.success('Saved user successfully!', {
                         position: "top-right",
@@ -92,14 +95,15 @@ const SignUp = ()=>{
             setUrl(data.url)
             if(data.url===undefined){
                 toast.error('Some error occured!', {
-                    position: "top-right",
-                    autoClose: 2000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    });
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                });
+                setLoader(false);
             }
         })
         .catch(err=>{
@@ -144,6 +148,7 @@ const SignUp = ()=>{
                 });
             return;
         }
+        setLoader(true);
         UploadImage();
     }
 
@@ -182,10 +187,15 @@ const SignUp = ()=>{
                 <input style={{marginLeft:"35px",marginTop:"30px"}} type="file" onChange={(e)=>{
                     setImage(e.target.files[0]);
                 }} />
-                <div className="signup_button"
+                <br></br>
+                <button className="signup_button"
                 onClick={()=>PostData()}>
                     SIGN UP
-                </div>
+                </button>
+                {
+                    loader && <LoaderAnimation />
+                }
+                <p className="redirect_msg">Already registered? <Link to="/signin">SignIn here</Link></p>
                 </div>
             </div>
         </div>
