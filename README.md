@@ -20,11 +20,7 @@ https://github.com/vijayjoshi16/Poll-Towards-A-Goal-Backend
 
 ## DEPLOYED WEBSITE LINK
 
-https://poll-towards-a-goal.vercel.app/
-
-## NOTE
-
-When you'll make your first API request probably through signin or register screen, the very first API call may take some time(somewhere around 8-12s) so please be patient with it. Further API calls will take much lesser time. This does not happen when the app is tested on localhost. But since the backend of this app is currently deployed on heroku, the initial API call takes some time.
+https://poll-towards-a-goal.netlify.app/
 
 ## SCREENSHOTS
 
