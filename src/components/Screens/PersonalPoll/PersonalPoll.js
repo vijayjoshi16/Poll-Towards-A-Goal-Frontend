@@ -42,6 +42,7 @@ const PersonalPoll = (props)=>{
     const [vote, setVote] = useState(undefined);
     const [dialogOpen, setDialogOpen] = useState(false);
     const [optionCount, setOptionCount] = useState([1,4,4]);
+    const [voted, setVoted] = useState(false);
     const history = useHistory();
 
     useEffect(()=>{
@@ -78,7 +79,7 @@ const PersonalPoll = (props)=>{
         }catch{
             history.push("/signin")
         }
-    },[]);
+    },[voted]);
 
     const voteButtonHandler = ()=>{
         if(pollData.votes.find((data)=>{return data.votedBy===userId})){
@@ -134,7 +135,7 @@ const PersonalPoll = (props)=>{
                         draggable: true,
                         progress: undefined,
                         });
-                        history.push('/');
+                        setVoted(true);
                 }else{
                     toast.error('Some error occured!', {
                         position: "top-right",
@@ -147,6 +148,7 @@ const PersonalPoll = (props)=>{
                         });
                 }
             })
+            setDialogOpen(false);
         }
     }
 
@@ -154,11 +156,11 @@ const PersonalPoll = (props)=>{
         <div>
             <div className="poll_all_content">
                 <h1 className="question">QUESTION</h1>
-                <h2>{pollData.question}</h2>
+                <p className="question_text">{pollData.question}</p>
                 <h1>OPTIONS</h1>
                 {pollData.options.map((data,index)=>{
                     return(
-                        <p>{index+1} . {data.optionContent}</p>
+                        <p className="option_text">{index+1} . {data.optionContent}</p>
                     )
                 })}
                 <HowToVoteIcon></HowToVoteIcon>

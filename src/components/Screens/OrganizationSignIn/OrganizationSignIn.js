@@ -125,7 +125,7 @@ const OraganizationSignIn = ()=>{
                 {
                     loader && <LoaderAnimation />
                 }
-                <p className="redirect_msg">New User? <Link to="/organizationsignup">Register here</Link></p>
+                <p className="redirect_msg">New Organization? <Link to="/organizationsignup">Register here</Link></p>
                 </div>
             </div>
         </div>

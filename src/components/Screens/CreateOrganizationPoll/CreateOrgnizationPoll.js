@@ -25,6 +25,23 @@ const CreateOrganizationPoll = ()=>{
         }
     },[]);
 
+    const addOption = ()=>{
+        if(options.find(option=>option.optionContent===newOption)){
+            toast.error('Already added this option!', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                });
+                return;
+        }
+        setOptions([...options, {optionContent: newOption, optionIndex: options.length + 1}]);
+        setNewOption("");
+    }
+
     const PostData = ()=>{
         if(!question){
             toast.error('Please enter a question!', {
@@ -129,8 +146,7 @@ const CreateOrganizationPoll = ()=>{
                 <Grid style={{marginTop:"20px"}} item xs={12} sm={6} md={4} lg={4}>
                     <div className="add_option_button"
                     onClick={()=>{
-                        setOptions([...options, {optionContent: newOption, optionIndex: options.length + 1}]);
-                        setNewOption("");
+                        addOption();
                     }}>
                         +
                     </div>

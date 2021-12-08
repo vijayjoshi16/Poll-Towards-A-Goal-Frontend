@@ -1,61 +1,61 @@
-.landing_page{
-    margin-top: 40px;
-    color:#3f51b5;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 1260px;
+.landing_page {
+  margin-top: 40px;
+  color: #3f51b5;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1260px;
 }
 
-.main_heading{
-    font-size: 3.5rem;
+.main_heading {
+  font-size: 3.5rem;
 }
 
-.short_description{
-    font-size: 1.5rem;
+.short_description {
+  font-size: 1.5rem;
 }
 
-.intro_img{
-    width: 90%;
-    margin-top: 40px;
-    max-height: 350px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 10px;
-    padding-bottom: 40px;
+.intro_img {
+  width: 90%;
+  margin-top: 40px;
+  max-height: 350px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 10px;
+  padding-bottom: 40px;
 }
 
-.why_polls{
-    text-align: center;
+.why_polls {
+  text-align: center;
 }
 
-.why_polls_card{
-    background-color: white;
-    border-radius: 15px;
-    padding: 5px;
-    cursor: pointer;
-    box-shadow: 5px 5px 5px 2.5px #d6d6d6;
-    transition: transform 0.2s;
-    margin: 10px;
+.why_polls_card {
+  background-color: white;
+  border-radius: 15px;
+  padding: 5px;
+  cursor: pointer;
+  box-shadow: 5px 5px 5px 2.5px #d6d6d6;
+  transition: transform 0.2s;
+  margin: 10px;
 }
 
-.why_polls_card:hover{
-    transform: scale(1.1);
+.why_polls_card:hover {
+  transform: scale(1.1);
 }
 
-.features{
-    text-align: center;
+.features {
+  text-align: center;
 }
 
-.final_message{
-    text-align: center;
-    width: 100%;
-    padding-top: 10px;
+.final_message {
+  text-align: center;
+  width: 100%;
+  padding-top: 10px;
 }
 
-.final_img{
-    width: 80%;
-    height: 400px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: -60px;
+.final_img {
+  width: 80%;
+  height: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: -60px;
 }

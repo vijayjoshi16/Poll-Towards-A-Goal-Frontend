@@ -1,7 +1,7 @@
 import './HomeScreen.css';
 import Grid from '@material-ui/core/Grid';
-import intro from '../../../img/intro.jpg';
-import final_img from '../../../img/final_img.png';
+import intro from '../../../img/intro.webp';
+import final_img from '../../../img/final_img.webp';
 import ForumIcon from '@material-ui/icons/Forum';
 import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
 import BusinessIcon from '@material-ui/icons/Business';
@@ -21,10 +21,10 @@ const HomeScreen = ()=>{
             <Grid container className="landing_page">
                 <Grid item xs={12} sm={12} md={6} lg={6}>
                     <h1 className="main_heading">POLL TOWARDS A GOAL</h1>
-                    <p className="short_description">A web app where you can conduct your own personal or organization polls and this serves as the ultimate solution for all your needs. This web app the necessary features for both poll creators and voters in order to carry out their polling tasks.</p>
+                    <p className="short_description">A web app where you can conduct your own personal or organization polls and this serves as the ultimate solution for all your needs. This web app provides the necessary features for both poll creators and voters in order to carry out their polling tasks.</p>
                 </Grid>
                 <Grid item xs={12} sm={12} md={6} lg={6}>
-                    <img className="intro_img" src={intro}></img>
+                    <img className="intro_img" src={intro} alt="Representative Image"></img>
                 </Grid>
                 <Grid className="why_polls" item xs={12} sm={12} md={12} lg={12}>
                     <h1 className="why_polls_heading">WHY DO WE NEED POLLS??</h1>
@@ -109,7 +109,7 @@ const HomeScreen = ()=>{
                     </Grid>
                 </Grid>
                 <h2 className="final_message">SO WHAT ARE YOU WAITING FOR??? GET STARTED WITH THIS WONDERFUL POLLING APP!!</h2>
-                <img className="final_img" src={final_img}></img>
+                <img className="final_img" src={final_img} alt="Product Image"></img>
             </Grid>
         </div>
     )
